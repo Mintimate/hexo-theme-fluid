@@ -1,0 +1,96 @@
+<%
+page.layout = "about"
+page.title = theme.about.title || __('about.title')
+page.subtitle = theme.about.subtitle || __('about.subtitle')
+page.banner_img = page.banner_img || theme.about.banner_img
+page.banner_img_height = page.banner_img_height || theme.about.banner_img_height
+page.banner_mask_alpha = page.banner_mask_alpha || theme.about.banner_mask_alpha
+%>
+
+<div class="text-center">
+  <div class="about-info">
+    <div class="about-name"><%- theme.about.name %></div>
+    <div class="about-intro"><%- theme.about.introduce || theme.about.intro %></div>
+    <div class="about-icons">
+      <% for(const each of theme.about.icons || []) { %>
+        <% if (!each.class) continue; %>
+        <% var cls = each.class %>
+        <% var isQr = each.qrcode %>
+        <a <%= isQr ? '' : ('href=' + url_for(each.link)) %> class="<%= isQr ? 'qr-trigger' : '' %>
+           <%= !isQr && each.tip ? 'hint--bottom hint--rounded' : '' %>"
+           <%= !isQr && each.tip ? 'aria-label=' + each.tip : '' %>
+           target="<%= isQr ? '_self' : '_blank' %>"
+        >
+          <i class="<%= cls %>" aria-hidden="true"></i>
+          <% if (isQr) { %>
+            <img class="qr-img" src="<%= url_for(each.qrcode) %>" alt="qrcode" />
+          <% } %>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<article class="about-content page-content mt-5">
+  <div class="markdown-body">
+    <%- page.content %>
+  </div>
+
+  <% if(page.comments) { %>
+    <!-- Comments -->
+    <article class="comments" id="comments">
+      <% var type %>
+      <% if (typeof page.comment === 'string' && page.comment !== '') { %>
+        <% type = '_partial/comments/' + page.comment %>
+      <% } else { %>
+        <% type = '_partial/comments/' + theme.post.comments.type %>
+      <% } %>
+      <%- partial(type) %>
+    </article>
+  <% } %>
+</article>
+
+
+<div class="sy_shang center">
+    <a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下"><i
+            class="iconfont icon-yueliang" id="nightMode">高级协助</i></a>
+    <div class="shang_box" style="text-align: center"><a href="javascript:void(0)" onclick="dashangToggle()"
+                                                         title="关闭" style="float:right;">X</a>
+        <div id="sl_shang" onsubmit="return postcheck()">
+            <div class="sl_shang"><b>协助方式</b>
+                <div class="row donate">
+                    <div class="col-6"><a type="radio" name="paytype" onclick="opay();return changeItem(0);"
+                                          checked="checked">微信</a></div>
+                    <div class="col-6"><a type="radio" name="paytype"
+                                          onclick="opay();return changeItem(1);">QQ</a></div>
+                </div>
+            </div>
+            <div id="sl_shang0"><img
+                    src="https://imagehost.mintimate.cn/Donate/wechat_sm.png"><br>使用微信扫一扫
+            </div>
+            <div id="sl_shang1" style="display:none;"><img
+                    src="https://imagehost.mintimate.cn/Donate/qq_sm.png"><br>打开QQ扫一扫
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+    }
+
+    function changeItem(i) {
+        var k = 2;
+        for (var j = 0; j < k; j++) {
+            if (j == i) {
+                document.getElementById("sl_shang" + j).style.display = "block";
+            } else {
+                document.getElementById("sl_shang" + j).style.display = "none";
+            }
+        }
+    }
+
+    function opay() {
+        document.getElementById("sl_shang").target = "_parent";
+    }
+</script>
