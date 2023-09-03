@@ -38,59 +38,58 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.about.banner_mask_alpha
 
   <% if(page.comments) { %>
     <!-- Comments -->
-    <article class="comments" id="comments">
+    <article id="comments">
       <% var type %>
       <% if (typeof page.comment === 'string' && page.comment !== '') { %>
-        <% type = '_partial/comments/' + page.comment %>
+        <% type = '_partials/comments/' + page.comment %>
       <% } else { %>
-        <% type = '_partial/comments/' + theme.post.comments.type %>
+        <% type = '_partials/comments/' + theme.post.comments.type %>
       <% } %>
       <%- partial(type) %>
     </article>
   <% } %>
 </article>
 
-
 <div class="sy_shang center">
-    <a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下"><i
-            class="iconfont icon-yueliang" id="nightMode">高级协助</i></a>
-    <div class="shang_box" style="text-align: center"><a href="javascript:void(0)" onclick="dashangToggle()"
-                                                         title="关闭" style="float:right;">X</a>
-        <div id="sl_shang" onsubmit="return postcheck()">
-            <div class="sl_shang"><b>协助方式</b>
-                <div class="row donate">
-                    <div class="col-6"><a type="radio" name="paytype" onclick="opay();return changeItem(0);"
-                                          checked="checked">微信</a></div>
-                    <div class="col-6"><a type="radio" name="paytype"
-                                          onclick="opay();return changeItem(1);">QQ</a></div>
-                </div>
-            </div>
-            <div id="sl_shang0"><img
-                    src="https://imagehost.mintimate.cn/Donate/wechat_sm.png"><br>使用微信扫一扫
-            </div>
-            <div id="sl_shang1" style="display:none;"><img
-                    src="https://imagehost.mintimate.cn/Donate/qq_sm.png"><br>打开QQ扫一扫
-            </div>
-        </div>
-    </div>
+  <a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下">高级协助</a>
+  <div class="shang_box" style="text-align: center"><a href="javascript:void(0)" onclick="dashangToggle()"
+                                                       title="关闭" style="float:right;">X</a>
+      <div id="sl_shang" onsubmit="return postcheck()">
+          <div class="sl_shang"><strong>协助方式</strong>
+              <div class="row donate">
+                  <div class="col-6"><a type="radio" name="paytype" onclick="opay();return changeItem(0);"
+                                        checked="checked">微信</a></div>
+                  <div class="col-6"><a type="radio" name="paytype"
+                                        onclick="opay();return changeItem(1);">QQ</a></div>
+              </div>
+          </div>
+          <div id="sl_shang0"><img
+                  src="https://imagehost.mintimate.cn/Donate/wechat_sm.png"><br><strong>使用微信扫一扫</strong>
+          </div>
+          <div id="sl_shang1" style="display:none;"><img
+                  src="https://imagehost.mintimate.cn/Donate/qq_sm.png"><br><strong>打开QQ扫一扫</strong>
+          </div>
+      </div>
+  </div>
 </div>
 <script>
-    function dashangToggle() {
-        $(".shang_box").fadeToggle();
-    }
+  function dashangToggle() {
+      $(".shang_box").fadeToggle();
+  }
 
-    function changeItem(i) {
-        var k = 2;
-        for (var j = 0; j < k; j++) {
-            if (j == i) {
-                document.getElementById("sl_shang" + j).style.display = "block";
-            } else {
-                document.getElementById("sl_shang" + j).style.display = "none";
-            }
-        }
-    }
+  function changeItem(i) {
+      var k = 2;
+      for (var j = 0; j < k; j++) {
+          if (j == i) {
+              document.getElementById("sl_shang" + j).style.display = "block";
+          } else {
+              document.getElementById("sl_shang" + j).style.display = "none";
+          }
+      }
+  }
 
-    function opay() {
-        document.getElementById("sl_shang").target = "_parent";
-    }
+  function opay() {
+      document.getElementById("sl_shang").target = "_parent";
+  }
 </script>
+<%- partial('_partials/markdown-plugins') %>

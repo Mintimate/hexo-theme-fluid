@@ -3,24 +3,25 @@
   &:not(:last-child)
     margin-bottom 1rem
 
-  &-sub
+  .category-sub
     pass
 
-  &-item
-    font-size 1.25rem
+  .category-item, .category-subitem
     font-weight bold
     display flex
     align-items center
 
-  &-subitem
-    font-size 1rem
-    font-weight bold
+  .category-item
+    font-size 1.25rem
 
-  &-collapse
-    margin-left: 1.25rem
+  .category-subitem
+    font-size 1.1rem
+
+  .category-collapse
+    padding-left: 1.25rem
     width 100%
 
-  &-count
+  .category-count
     font-size .9rem
     font-weight initial
     min-width 1.3em
@@ -34,7 +35,12 @@
     span
       width 2rem
 
-  &-item-action
+  .category-post
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+
+  .category-item-action
 
     &:not(.collapsed) > i
       transform rotate(90deg)
@@ -45,7 +51,7 @@
       display inline-block
       margin-left .25rem
 
-    &:hover
+    .category:hover
       z-index 1
       color var(--link-hover-color)
       text-decoration none

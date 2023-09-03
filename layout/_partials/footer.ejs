@@ -1,5 +1,14 @@
-<footer class="text-center mt-5 py-3">
-	<div class="text-center">
+<div class="footer-inner">
+	<div style="font-size:smaller">
+		<a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+		<span>With</span>
+		<a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+		<i class="iconfont icon-love"></i>
+		<a href="/about" target="_blank" rel="nofollow noopener">
+		  <span>Mintimate</span></a>,
+	  Powered by <a href="https://webify.cloudbase.net/" target="_blank">CloudBase Webify</a>
+	  </div>
+  <div class="text-center">
 	  <span id="timeDate" style="font-size:smaller">载入天数...</span>
 	  <span id="times" style="font-size:smaller">载入时分秒...</span>
 	  <script>
@@ -30,23 +39,18 @@
 	  createtime();
 	  </script>
 	</div>
-    <div style="font-size:smaller">
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-	  <span>With</span>
-	  <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="/about" target="_blank" rel="nofollow noopener">
-        <span>Mintimate</span></a>
-	</br>
-	Powered by <a href="https://webify.cloudbase.net/" target="_blank">CloudBase Webify</a>
-  <%- partial('_partial/statistics.ejs') %>
-  <%- partial('_partial/beian.ejs') %>
+  <% if (theme.footer.statistics.enable) { %>
+    <%- partial('_partials/footer/statistics.ejs') %>
+  <% } %>
+  <% if(theme.footer.beian.enable) { %>
+    <!-- 备案信息 ICP for China -->
+    <%- partial('_partials/footer/beian.ejs') %>
+  <% } %>
   <% if(theme.web_analytics.cnzz) { %>
     <!-- cnzz Analytics Icon -->
-    <span id="cnzz_stat_icon_<%- theme.web_analytics.cnzz %>" style="display: none"></span>
+    <span id="cnzz_stat_icon_<%= theme.web_analytics.cnzz %>" style="display: none"></span>
   <% } %>
+  <div class="mt-2" style="font-size:smaller">
+    <span class="mb-2">嗷,真的到底了呢~~想联系站长？<a href="/about">Here</a></span>
   </div>
-      <div class="mt-2" style="font-size:smaller">
-      <span class="mb-2">嗷,真的到底了呢~~想联系站长？<a href="/about">Here</a></span>
-  </div>
-</footer>
+</div>

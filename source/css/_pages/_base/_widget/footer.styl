@@ -1,4 +1,7 @@
-footer
+.footer-inner
+  padding 3rem 0 1rem 0
+  text-align center
+
   & > div:not(:first-child)
     margin .25rem 0
     font-size .85rem
@@ -19,18 +22,12 @@ footer
       text-align left
 
   .beian
+    display flex
     flex-direction row
     justify-content center
 
     & > *
-      flex 1
       margin 0 .25rem
-
-    & > *:nth-last-child(2):first-child
-      text-align right
-
-    & > *:nth-last-child(2):first-child ~ *
-      text-align left
 
   .beian-police
     position relative

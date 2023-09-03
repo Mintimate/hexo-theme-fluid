@@ -13,9 +13,8 @@
     padding-left 1rem
     padding-right 1rem
 
-.post-content
-    h1, h2, h3, h4, h5, h6
-      anchor-offset()
+  .anchorjs-link-left
+    opacity 0 !important
 
 .page-content, .post-content
   strong
@@ -28,25 +27,27 @@
     object-fit cover
     max-width 100%
 
+@media (max-width: 767px)
+  .page-content, .post-content
+    overflow-x hidden
+
 .post-metas
   display flex
-  flex-direction row
   flex-wrap wrap
+  font-size .9rem
 
 .post-meta
-  & > i
-    margin-right .15rem
 
-  & > a:not(.hover-with-bg)
-    margin-right .15rem
+  & > *:not(.hover-with-bg)
+    margin-right .2rem
 
 .post-prevnext
-  margin-top 2rem
   display flex
   flex-wrap wrap
   justify-content space-between
-  margin-left -0.5rem
-  margin-right -0.5rem
+  font-size .9rem
+  margin-left -.35rem
+  margin-right -.35rem
 
   .post-prev, .post-next
     display flex
@@ -124,75 +125,20 @@
     -webkit-transform translateX(0)
     transform translateX(0)
 
-// toc
-
-#toc
-  position -webkit-sticky
-  position sticky
-  top 2rem
-  padding 3rem 0 0 0
-  visibility hidden
-
-.toc-header
-  margin-bottom .5rem
-  font-weight 500
-  line-height 1.2
-
-  &, & > i
-    font-size 1.25rem
-
-.toc-body
-  max-height 75vh
-  overflow-y auto
-  overflow -moz-scrollbars-none
-  -ms-overflow-style none
-
-  ol
-    list-style none
-    padding-inline-start 1rem
-
-  &::-webkit-scrollbar
-    display none
-
-.tocbot-list
-  ol
-    list-style none
-    padding-left 1rem
-
-  a
-    font-size 0.95rem
-
-.tocbot-link
-  color var(--text-color)
-
-.tocbot-active-link
+#seo-header
+  color var(--post-heading-color)
   font-weight bold
-  color var(--link-hover-color)
+  margin-top 0.5em
+  margin-bottom 0.75em
+  border-bottom-color var(--line-color)
+  border-bottom-style solid
+  border-bottom-width 2px
+  line-height 1.5
 
-.tocbot-is-collapsed
-  max-height 0
-
-.tocbot-is-collapsible
-  overflow hidden
-  transition all .3s ease-in-out
-
-@media (max-width: 1024px)
-  .toc-container
-    padding-left 0
-    padding-right 0
-
-.markdown-body .image-caption
-  font-size .8rem
-  color var(--post-text-color)
-  opacity 0.65
-  line-height 1
-  margin -0.75rem auto 2rem
-  text-align center
-
-.custom, .comments
+.custom, #comments
   margin-top 2rem
 
-.comments
+#comments
   noscript
     display block
     text-align center
@@ -202,3 +148,32 @@
   font-size .8em
   padding .45rem
   float right
+
+a.fancybox:hover
+  text-decoration none
+
+// Rewrite mathjax
+mjx-container, .mjx-container
+  overflow-x auto
+  overflow-y hidden !important
+  padding .5em 0
+
+  &:focus, svg:focus
+    outline none
+
+.mjx-char
+  line-height 1
+
+// Rewrite katex
+.katex-block
+  overflow-x auto
+
+.katex, .mjx-mrow
+  white-space pre-wrap !important
+
+// Rewrite hint
+.footnote-ref [class*=hint--][aria-label]:after
+  max-width 12rem
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
